@@ -4,6 +4,14 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private PlayerManager playerManager;
     [SerializeField] private Interactable gun;
+    [field:SerializeField] public TimeManager TimeManager {  get; private set; }
+
+    public static GameManager Instance { get; private set; }
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
 
     private void Start()
