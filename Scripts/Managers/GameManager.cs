@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private PlayerManager playerManager;
+    [SerializeField] public PlayerManager playerManager;
     [SerializeField] private Interactable gun;
     [field:SerializeField] public TimeManager TimeManager {  get; private set; }
 

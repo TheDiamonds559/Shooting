@@ -10,15 +10,22 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float _pathRadius = 5.0f;
     [SerializeField] private Quaternion _normalRotation;
 
+    private EnemyState _state;
+
 
     private void Start()
     {
+        _state = EnemyState.Walking;
         _rb = GetComponent<Rigidbody>();
     }
 
     private void Update()
     {
         if (Target == null) return;
+        if (_state != EnemyState.Walking)
+        {
+            return;
+        }
         if (Vector3.Distance(transform.position, Target.transform.position) >= _pathRadius)
         {
             transform.rotation = _normalRotation;
@@ -34,4 +41,10 @@ public class Enemy : MonoBehaviour
     {
         _rb.linearVelocity = _speed * transform.forward;
     }
+}
+
+public enum EnemyState
+{
+    Walking,
+    Attacking
 }
