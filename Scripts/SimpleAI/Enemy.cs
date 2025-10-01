@@ -10,13 +10,21 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float _pathRadius = 5.0f;
     [SerializeField] private Quaternion _normalRotation;
 
+    private IHealth _health;
+
     private EnemyState _state;
 
 
     private void Start()
     {
-        _state = EnemyState.Walking;
+        _health = GetComponent<IHealth>();
+        _health.DeathE += Death;
         _rb = GetComponent<Rigidbody>();
+    }
+
+    private void OnEnable()
+    {
+        _state = EnemyState.Walking;
     }
 
     private void Update()
@@ -37,9 +45,19 @@ public class Enemy : MonoBehaviour
         Move();
     }
 
+    private void Death()
+    {
+        ObjectPoolManager.Instance.Uninstantiate("enemy", gameObject);
+    }
+
     private void Move()
     {
         _rb.linearVelocity = _speed * transform.forward;
+    }
+
+    private void OnDestroy()
+    {
+        _health.DeathE -= Death;
     }
 }
 

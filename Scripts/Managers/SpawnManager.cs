@@ -14,7 +14,7 @@ public class SpawnManager : MonoBehaviour
 
     private void SpawnEnemy()
     {
-        GameObject g = Instantiate(_enemy);
+        GameObject g = ObjectPoolManager.Instance.GetPrefab("enemy");
         g.GetComponent<Enemy>().Target = GameManager.Instance.playerManager.gameObject;
         g.transform.position = new(Random.Range(_xSpawnRange.x, _xSpawnRange.y), _ySpawnPos, _zSpawnPos);
     }
