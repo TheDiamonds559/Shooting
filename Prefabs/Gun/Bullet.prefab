@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 5067232096583389324}
   - component: {fileID: 369586896325331620}
   - component: {fileID: 2341589391922614358}
-  - component: {fileID: 3193692620685936630}
   - component: {fileID: -6559050023508130728}
   - component: {fileID: 5660937170616343070}
   m_Layer: 0
@@ -111,33 +110,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &3193692620685936630
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 620567756278736976}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &-6559050023508130728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,10 +122,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 222a0d58254f3a54a8701a6b11f1d965, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rb: {fileID: 3193692620685936630}
-  _velocity: 2000
+  _velocity: 50
   _trailRenderer: {fileID: 5660937170616343070}
-  _hitEffect: {fileID: 0}
 --- !u!96 &5660937170616343070
 TrailRenderer:
   serializedVersion: 3
