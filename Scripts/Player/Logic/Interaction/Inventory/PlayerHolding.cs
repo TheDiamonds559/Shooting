@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerHolding : PlayerComponent
@@ -8,6 +9,8 @@ public class PlayerHolding : PlayerComponent
     private PlayerInteraction _interaction;
     private Interactable _holding;
     private PlayerInput _input;
+
+    public Action<IHoldable> OnHoldEvent;
 
     public override void InitialiseComponent(PlayerManager playerManager)
     {
@@ -41,7 +44,7 @@ public class PlayerHolding : PlayerComponent
             temp.transform.SetParent(null);
         }
         _holding = _hotbar.HotbarStored[_hotbar.HotbarIndex];
-
+        OnHoldEvent?.Invoke(_holding?.GetComponent<IHoldable>());
         if (_holding == null) return;
         if (!_holding.ItemData.IsHoldable) return;
 
@@ -64,6 +67,10 @@ public class PlayerHolding : PlayerComponent
         if (_input.LeftMouse)
         {
             _holding.PrimaryUse();
+        }
+        if (_input.Reload)
+        {
+            _holding.Reload();
         }
     }
 

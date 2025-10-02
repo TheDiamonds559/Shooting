@@ -29,6 +29,7 @@ public class PlayerInput : MonoBehaviour
     public bool MouseScrollUp { get; private set; }
     public bool LeftMouse {  get; private set; }
     public bool RightMouse { get; private set; }
+    public bool Reload {  get; private set; }
 
     public void ReadInteractionInputs()
     {
@@ -40,6 +41,7 @@ public class PlayerInput : MonoBehaviour
         InteractButton = Input.GetKeyDown(KeyCode.C);
         LeftMouse = Input.GetMouseButton(0);
         RightMouse = Input.GetMouseButton(1);
+        Reload = Input.GetKeyDown(KeyCode.R);
     }
     #endregion
 

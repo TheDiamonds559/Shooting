@@ -9,6 +9,7 @@ public class Interactable : MonoBehaviour
     private IInteract _interactBehaviour;
     private IPickUp _pickupBehaviour;
     private IUseable _useableBehaviour;
+    private IReloadable _reloadableBehaviour;
 
     public PlayerManager AttachedPlayer { get; private set; }
 
@@ -20,6 +21,7 @@ public class Interactable : MonoBehaviour
         _interactBehaviour = GetComponent<IInteract>();
         _pickupBehaviour = GetComponent<IPickUp>();
         _useableBehaviour = GetComponent<IUseable>();
+        _reloadableBehaviour = GetComponent<IReloadable>();
         if (_pickupBehaviour != null) CanPickUp = true;
         else CanPickUp = false;
     }
@@ -39,6 +41,11 @@ public class Interactable : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    public void Reload()
+    {
+        _reloadableBehaviour?.Reload();
     }
 
     public void AttachPlayer(PlayerManager interactedPlayer)

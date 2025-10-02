@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class Gun : MonoBehaviour, IUseable
+public class Gun : MonoBehaviour, IUseable, IHoldable, IReloadable
 {
     [SerializeField] private GameObject _barrel;
     [SerializeField] private Bullet _bulletPrefab;
@@ -33,10 +33,6 @@ public class Gun : MonoBehaviour, IUseable
     {
         _interactable = GetComponent<Interactable>();
         _interactable.PickedUpE += AttachPlayer;
-    }
-
-    private void Start()
-    {
         _ammo = _maxMagazine;
         _ammoReserves = _ammoCapacity;
     }
@@ -86,7 +82,6 @@ public class Gun : MonoBehaviour, IUseable
     private void Reload()
     {
         _isReloading = true;
-        Debug.Log("Reloading");
 
         if (_ammoReserves < _maxMagazine)
         {
@@ -95,8 +90,9 @@ public class Gun : MonoBehaviour, IUseable
         }
         else
         {
+            int ammoDiff = _maxMagazine - _ammo;
             _ammo = _maxMagazine;
-            _ammoReserves-= _maxMagazine;
+            _ammoReserves-= ammoDiff;
         }
         StartCoroutine(ReloadTimer());
     }
@@ -121,5 +117,22 @@ public class Gun : MonoBehaviour, IUseable
     private void OnDestroy()
     {
         _interactable.PickedUpE -= AttachPlayer;
+    }
+
+    public string GetInformation()
+    {
+        if (_isReloading)
+            return "Reloading...";
+        return $"{_ammo}/{_ammoReserves}";
+    }
+
+    public string GetName()
+    {
+        return GetComponent<Interactable>().ItemName;
+    }
+
+    void IReloadable.Reload()
+    {
+        Reload();
     }
 }

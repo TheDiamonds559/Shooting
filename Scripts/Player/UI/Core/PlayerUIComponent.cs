@@ -2,7 +2,7 @@ using UnityEngine;
 
 public abstract class PlayerUIComponent : MonoBehaviour
 {
-    private PlayerUIManager _manager;
+    protected PlayerUIManager _manager;
     public virtual void InitialiseComponent(PlayerUIManager playerUIManager)
     {
         _manager = playerUIManager;
