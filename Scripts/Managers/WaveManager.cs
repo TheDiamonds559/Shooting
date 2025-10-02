@@ -5,6 +5,7 @@ public class WaveManager : MonoBehaviour
 {
     [SerializeField] private float _secondsInNormalWave = 180;
     [SerializeField] private float _secondsInBossWave = 300;
+    [SerializeField] private float _secondsMultiplier = 1;
 
 
     public WaveState WaveType { get; private set; } = WaveState.Intermission;
@@ -19,13 +20,13 @@ public class WaveManager : MonoBehaviour
     public void StartNewWave()
     {
         if (WaveType != WaveState.Intermission) return;
+        WaveNumber++;
         if (WaveNumber % _bossWave == 0)
             WaveType = WaveState.BossWave;
         else
             WaveType = WaveState.NormalWave;
-        WaveNumber++;
-        _secondsPassed = 0;
 
+        _secondsPassed = 0;
         StartWaveE?.Invoke(WaveNumber);
     }
 
@@ -39,7 +40,7 @@ public class WaveManager : MonoBehaviour
     private void Update()
     {
         if (WaveType == WaveState.Intermission) return;
-        _secondsPassed += Time.deltaTime;
+        _secondsPassed += Time.deltaTime * _secondsMultiplier;
         if ((WaveType == WaveState.BossWave && _secondsPassed >= _secondsInBossWave) || (WaveType == WaveState.NormalWave && _secondsPassed >= _secondsInNormalWave))
         {
             StopWave();

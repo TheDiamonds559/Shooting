@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc6d7c1f9e99770488f2120cfc953f1b, type: 3}
   m_Name: StartWave
   m_EditorClassIdentifier: 
-  <Description>k__BackingField: 
+  <Description>k__BackingField: Start The Wave
   <ItemImage>k__BackingField: {fileID: 0}
   <IsHoldable>k__BackingField: 0
   <HoldingRotation>k__BackingField: {x: 0, y: 0, z: 0}

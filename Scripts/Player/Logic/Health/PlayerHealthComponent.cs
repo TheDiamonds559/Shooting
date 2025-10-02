@@ -3,24 +3,24 @@ using UnityEngine;
 [RequireComponent(typeof(IHealth))]
 public class PlayerHealthComponent : PlayerComponent
 {
-    private IHealth _health;
+    private IHealth Health;
 
     public override void InitialiseComponent(PlayerManager playerManager)
     {
-        _health = GetComponent<IHealth>();
+        Health = GetComponent<IHealth>();
         base.InitialiseComponent(playerManager);
     }
 
     protected override void AddEvents()
     {
-        _health.DamageE += Damage;
-        _health.DeathE += Death;
+        Health.DamageE += Damage;
+        Health.DeathE += Death;
     }
 
     protected override void RemoveEvents()
     {
-        _health.DamageE -= Damage;
-        _health.DeathE -= Death;
+        Health.DamageE -= Damage;
+        Health.DeathE -= Death;
     }
 
     private void Damage(float damage)
