@@ -24,6 +24,16 @@ public class StandardHealth : MonoBehaviour, IHealth
         }
     }
 
+    public float GetHealth()
+    {
+        return _health;
+    }
+
+    public float GetMaxHealth()
+    {
+        return _maxHealth;
+    }
+
     public void Heal(float amount)
     {
         _health += amount;
@@ -39,7 +49,7 @@ public class StandardHealth : MonoBehaviour, IHealth
         DeathE -= deathFunction;
     }
 
-    private void Start()
+    private void OnEnable()
     {
         _health = _maxHealth;
     }
