@@ -23,7 +23,7 @@ public class DamageSphere : MonoBehaviour
 
         foreach (Collider cc in c)
         {
-            if (cc.gameObject.layer == _ignoreMask) continue;
+            if (((1 << cc.gameObject.layer) & _ignoreMask) != 0) continue;
             IHealth h = cc.GetComponent<IHealth>();
             if (h == null) continue;
             _toHit.Add(h);
@@ -62,5 +62,10 @@ public class DamageSphere : MonoBehaviour
     {
         yield return new WaitForSeconds(_hitRate);
         _isHitting = false;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawSphere(transform.position, _radius);
     }
 }
